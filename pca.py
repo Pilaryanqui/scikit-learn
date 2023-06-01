@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler  # Normalizar los datos
 from sklearn.model_selection import train_test_split
 # bloques de entrenamiento y prueba de un modelo
 if __name__ == '__main__':
-    dt_heart = pd.read_csv('./datos/Datos08_12.csv')
+    dt_heart = pd.read_csv('./datos/Datos_Agos08_Diciem12.csv')
     print(dt_heart.head(7))
 # las featurus sin el target
 dt_features = dt_heart.drop(['INCIDENCIA'], axis=1)
