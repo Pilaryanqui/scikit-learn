@@ -1,5 +1,5 @@
 import pandas as pd  # importamos pandas
-import sklearn  # biblioteca de aprendizaje automático
+import sklearn  # biblioteca de aprendizaje automatico
 # Librería especializada en la creación de gráficos
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA  # importamos algorimo PCA
@@ -11,8 +11,8 @@ from sklearn.preprocessing import StandardScaler  # Normalizar los datos
 from sklearn.model_selection import train_test_split
 # bloques de entrenamiento y prueba de un modelo
 if __name__ == '__main__':
-    dt_heart = pd.read_csv('./datos/Reporte23.csv')
-    # print(dt_heart.head(7))
+    dt_heart = pd.read_csv('./datos/Datos08_12.csv')
+    print(dt_heart.head(7))
 # las featurus sin el target
 dt_features = dt_heart.drop(['INCIDENCIA'], axis=1)
 dt_target = dt_heart['INCIDENCIA']  # obtenemos el target
@@ -60,3 +60,10 @@ dt_test = ipca.transform(X_test)
 logistic.fit(dt_train, y_train)
 # Calculamos nuestra exactitud de nuestra predicción
 print("SCORE IPCA: ", logistic.score(dt_test, y_test))
+
+# Grafica
+plt.plot(range(len(pca.explained_variance_)), pca.explained_variance_ratio_)
+plt.xlabel('Componente Principal')
+plt.ylabel('Varianza Explicada')
+plt.title('Varianza Explicada por Componente Principal')
+plt.show()
