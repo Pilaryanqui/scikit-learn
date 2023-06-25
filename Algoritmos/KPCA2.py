@@ -6,13 +6,13 @@ from sklearn.model_selection import train_test_split
 
 if __name__ == "__main__":
     # Cargamos los datos del dataframe de pandas
-    dt_heart = pd.read_csv('./datos/Datos_Agos08_Diciem12.csv')
+    dt_heart = pd.read_csv('./datos/DataDeber.csv')
     # Imprimimos un encabezado con los primeros 5 registros
     print(dt_heart.head(5))
     # Guardamos nuestro dataset sin la columna de target
-    dt_features = dt_heart.drop(['INCIDENCIA'], axis=1)
+    dt_features = dt_heart.drop(['Toxicos'], axis=1)
     # Este será nuestro dataset, pero sin la columna
-    dt_target = dt_heart['INCIDENCIA']
+    dt_target = dt_heart['Toxicos'].apply(lambda x: 1 if x >= 0.5 else 0)  # Discretización de las etiquetas
     # Normalizamos los datos
     dt_features_normalized = StandardScaler().fit_transform(dt_features)
     # Partimos el conjunto de entrenamiento y para añadir replicabilidad usamos el random state
@@ -23,7 +23,6 @@ if __name__ == "__main__":
     print("Resultado Original:")
     # Aplicamos la función de kernel de tipo polinomial
     for k in kernel:
-        
         kpca = KernelPCA(n_components=4, kernel=k)
         # Ajustamos los datos
         kpca.fit(X_train)
@@ -50,6 +49,7 @@ if __name__ == "__main__":
 
     print()
     print("Resultado Discretizado:")
+  
     for k in kernel:
         
         # Utilizamos los datos discretizados en lugar de los originales

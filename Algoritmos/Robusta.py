@@ -9,11 +9,19 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import KBinsDiscretizer
 
 if __name__ == "__main__":
-    dataset = pd.read_csv('./datos/Datos_Agos08_Diciem12.csv')
+    dataset = pd.read_csv('./datos/DataDeber.csv')
     print(dataset.head(5))
-    X = dataset[['Rain', 'Temperature', 'RH', 'DewPoint', 'WindSpeed',
-                 'GustSpeed', 'WindDirection','PLANTA','FRUTO', 'SEVERIDAD (%)']]
-    y = dataset[['INCIDENCIA']]
+    X = dataset[['Total commits', 'Total commits per day', 'Accumulated commits', 'Committers', 'Committers Weight', 'classes', 'ncloc',
+            'functions', 'duplicated_lines', 'test_errors', 'skipped_tests', 'coverage', 'complexity', 'comment_lines',
+            'comment_lines_density', 'duplicated_lines_density', 'files', 'directories', 'file_complexity', 'violations',
+            'duplicated_blocks', 'duplicated_files', 'lines', 'public_api', 'statements', 'blocker_violations', 'critical_violations',
+            'major_violations', 'minor_violations', 'info_violations', 'lines_to_cover', 'line_coverage', 'conditions_to_cover',
+            'branch_coverage', 'sqale_index', 'sqale_rating', 'false_positive_issues', 'open_issues', 'reopened_issues',
+            'confirmed_issues', 'sqale_debt_ratio', 'new_sqale_debt_ratio', 'code_smells', 'new_code_smells', 'bugs',
+            'effort_to_reach_maintainability_rating_a', 'reliability_remediation_effort', 'reliability_rating',
+            'security_remediation_effort', 'security_rating', 'cognitive_complexity', 'new_development_cost',
+            'security_hotspots', 'security_review_rating']]
+    y = dataset[['Toxicos']]
     
     estimadores = {
         'SVR': SVR(gamma='auto', C=1.0, epsilon=0.1),
